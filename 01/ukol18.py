@@ -6,20 +6,25 @@ stastna = input('Jsi stastna? ')
 bohata = input('Jsi bohata? ')
 
 if (stastna == 'ano' or stastna == 'Ano'):
-    if (bohata == stastna):
+    if (bohata == 'ano' or bohata == 'Ano'):
         print('Gratuluji!')
-    if (stastna == 'ano' or stastna == 'Ano'):
+    else:
         if (bohata == 'ne' or bohata == 'Ne'):
             print('Zkus min utracet!')
+        else:
+            print('Nerozumim')        
 else: 
     if (stastna == 'ne' or stastna == 'Ne'):
-        if (bohata == stastna): 
+        if (bohata == 'ne' or bohata == 'Ne'): 
             print('To je mi lito.')
-        if (stastna == 'ne' or stastna == 'Ne'): 
+        else:  
             if (bohata == 'ano' or bohata == 'Ano'):    
                 print('Zkus se vice usmivat.')
-    else:
-        print('Nerozumim.')
+            else:
+                print('Nerozumim.')  
+    else: 
+        print('Nerozumim')                  
+
 
  
 
