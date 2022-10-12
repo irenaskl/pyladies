@@ -8,9 +8,9 @@ fillcolor(color)
 begin_fill()
 
 #Nakresli ctverec
-for _ in range(4):
+for _ in range(6):
     forward(size)
-    left(90)
+    left(60)
 
 end_fill()
 
