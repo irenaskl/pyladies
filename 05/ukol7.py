@@ -14,13 +14,14 @@ while True:
     pin = input('Zadej rodne cislo ve formatu xxxxxx/xxxx: ') 
     if pin.replace('/','',1).isdigit():
         break
-    print('Toto neni cislo!')
+    print('Toto neni cislo ve formatu xxxxxx/xxxx!')
 
 #Pin musi mit 11 znaku, na seste pozici musi byt /, kdyz se lomitko na prvni pozici nahradi "", tak musi byt pin cislo.
 if len(pin) == 11 and pin[6] == '/' and pin.replace('/','',1).isdigit():
-    print(True)
+    print('Kontrola formatu cisla: ', True)
 else:
-    print(False)    
+    print('Kontrola formatu cisla: ', False) 
+    exit(1)   
 
 pin = pin.replace('/','',1)         #Prvni pozici se znakem / vymenim za ""
 pin_int = int(pin)                  #Rodne cislo prevedu ze string na cislo
@@ -28,9 +29,10 @@ result = pin_int / 11               #Rodne cislo vydelim 11 se zbytem
 
 if result == int(result):           #Vysledek musi byt cele cislo
     #print(result)
-    print(True)
+    print('Delitelnost 11: ', True)
 else:
-    print(False) 
+    print('Delitelnost 11: ',False) 
+    exit(2)
 
 date = pin[4:6]
 month = int(pin[2:4])
@@ -40,7 +42,7 @@ year = int(pin[:2])
 
 sex = 'Muz'
 
-#print(month[:1])
+
 if month > 12:
     month = month - 50
     sex = 'Zena'
@@ -51,11 +53,5 @@ if year <= 22:
 
 
 print(f'Datum narozeni: {date}.{month}.{century}{year}')    
-print(sex)
+print('Pohlavi: ', sex)
      
-
-    
-
-
-
-#print(date, month, year) 
