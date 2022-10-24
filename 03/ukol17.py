@@ -1,15 +1,14 @@
 #Napiš program, který se pětkrát zeptá na číslo a nejmenší zadané číslo vypíše.
 
-first_number = int(input('Zadej prvni cislo: '))
-second_number = int(input('Zadej prvni cislo: '))
-third_number = int(input('Zadej prvni cislo: '))
-fourth_number = int(input('Zadej prvni cislo: '))
-fifth_number = int(input('Zadej prvni cislo: '))
+cisla = []
+for i in range(5):
+    vstup = int(input(f"Zadej {i + 1}. číslo: "))
+    cisla.append(vstup)
 
-numbers = [first_number, second_number, third_number, fourth_number, fifth_number]
+print(f"Nejmenší číslo jest: {min(cisla)}")
 
-numbers.sort()
-
-
-print(f'Nejmensi cislo ze seznamu je {numbers[:1]} .')
-
+#Ve výrazech v chlupatých závorkách {...} v f-stringu lze normálně volat třeba i
+#funkce. V tomhle případě jsme použili vestavěnou funkci min(), které
+#podstrčíme nějaký iterable (iterable je něco, přes co se dá iterovat - tedy např. list,
+#string, tuple, dokonce aj slovník nebo set) - a z funkce se pak vrátí prvek, který má
+#v celém iterable nejnižší hodnotu.
