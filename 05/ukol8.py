@@ -15,11 +15,9 @@ else:
 
 pin = pin.replace('/','',1)         #Prvni pozici se znakem / vymenim za ""
 pin_int = int(pin)                  #Rodne cislo prevedu ze string na cislo
-result = pin_int / 11               #Rodne cislo vydelim 11 se zbytem
-
-
-if result == int(result):           #Vysledek musi byt cele cislo
-      print('Spravne zadane rodne cislo.')  
+              
+if pin_int % 11 == 0:                #Vysledek musi byt cele cislo
+    print('Spravne zadane rodne cislo.')  
 else:
     print('Spatne zadane rodne cislo.')
 
