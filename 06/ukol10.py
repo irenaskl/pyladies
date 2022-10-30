@@ -5,7 +5,7 @@
 #"Vrátí herní pole s daným symbolem umístěným na danou pozici"
 
 def tah(field, position, symbol):
-    '''Umisteni tahu do herniho pole.'''
+    '''Vrati herni pole s danym symbolem umistenym na danou pozici.'''
     start = field[:position]
     end = field[position + 1:]
     if (position >= 0 and position <= 19 and 

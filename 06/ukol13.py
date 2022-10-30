@@ -74,10 +74,10 @@ def piskvorky1d():
                 break       
             elif o_game_field:
                 game_field = o_game_field
-    return 'The End'                 
+    return                 
 
         
 
 
-print(piskvorky1d())    
+piskvorky1d()   
     

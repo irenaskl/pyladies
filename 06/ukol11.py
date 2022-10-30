@@ -4,13 +4,14 @@
 #zadá špatný vstup, funkce mu vynadá a zeptá se znova.
 
 def tah_hrace(field):
-    '''Umisteni symbolu hrace na vybranou pozici.'''
+    '''Vrati herni pole se zaznamenanym tahem hrace.'''
     while True:
         player_position = int(input('Zadej cislo pozice: '))
         if (player_position >= 0 and player_position <= 19 and 
            field[player_position] == '-'):
-           return player_position    
+           return tah(field, player_position, 'x' )    
         print('Spatne zadana pozice.')
+       
          
 
 print(tah_hrace('------xx-o------'))
