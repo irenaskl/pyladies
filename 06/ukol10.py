@@ -6,17 +6,13 @@
 
 def tah(field, position, symbol):
     '''Vrati herni pole s danym symbolem umistenym na danou pozici.'''
+    correct_position = position in range (0, 20)
+    correct_symbol = symbol == 'x' or symbol == 'o'
+    if not correct_position or not correct_symbol:
+        return False   
+    
     start = field[:position]
     end = field[position + 1:]
-    if (position >= 0 and position <= 19 and 
-        symbol == 'x' or symbol == 'o'):
-        change = start + symbol + end 
-        return change    
-    else:
-        return False    
+    return start + symbol + end
 
-
-print(tah('------xx-o------', 2, 'x'))   
-print(tah('------xx-o------', 20, 'x'))
-print(tah('------xx-o------', 2, 'a'))
 

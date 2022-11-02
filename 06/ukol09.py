@@ -8,16 +8,16 @@
 def vyhodnot(my_field):
     '''Vyhodnoti herni pole podle stavu hry.'''    
     if 'xxx' in my_field:
+        print('Vyhral jsi!')
         return 'x'
     elif 'ooo' in my_field:
+        print('Prohral jsi!')
         return 'o'
     elif '-' not in my_field:
+        print('Remiza!')
         return '!'
     else: 
-        return '-'    
-   
-print(vyhodnot('--------x-------'))        
-print(vyhodnot('-x-x--x-o-------'))        
-print(vyhodnot('------xx-ooo----'))        
+        return '-'
+       
 
 

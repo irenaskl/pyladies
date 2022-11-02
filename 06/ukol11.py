@@ -6,12 +6,18 @@
 def tah_hrace(field):
     '''Vrati herni pole se zaznamenanym tahem hrace.'''
     while True:
-        player_position = int(input('Zadej cislo pozice: '))
-        if (player_position >= 0 and player_position <= 19 and 
-           field[player_position] == '-'):
+        player_position = input('Zadej cislo pozice: ')
+        if player_position.isdigit():
+            break
+        print('Spatne zadana pozice.')
+
+    while True:
+        player_position = int(player_position)
+        if (player_position in range(0, 20) and 
+            field[player_position] == '-'):
            return tah(field, player_position, 'x' )    
         print('Spatne zadana pozice.')
-       
+        return tah_hrace(field)
          
 
-print(tah_hrace('------xx-o------'))
+
