@@ -6,23 +6,19 @@
 #Pro účely úkolu stačí, když bude program umět zpracovat čísla vydávaná od roku 1985. 
 # Reálná rodná čísla můžou být složitější :)
 
+from curses.ascii import isdigit
 from datetime import datetime
 
 def format(eleven_char):
     '''Overi validitu formatu rodneho cisla'''
-    if len(eleven_char) == 11 and eleven_char[6] == '/' and eleven_char.replace('/','',1).isdigit():
-        return True
-    else:
-        return False
+    return (len(eleven_char) == 11 and eleven_char[6] == '/' and
+            eleven_char.replace('/', '', 1).isdigit())
 
 def devide(eleven_char):
     '''Overi delitelnost rodneho cisla jedenacti.''' 
     eleven_char = eleven_char.replace('/','',1)  
     eleven_char_int = int(eleven_char)
-    if eleven_char_int % 11 == 0:             
-        return True
-    else:
-        return False 
+    return eleven_char_int % 11 == 0
 
 def date_of_birth(eleven_char):
     '''Z rodneho cisla vypocita datum narozeni.'''
@@ -37,7 +33,7 @@ def date_of_birth(eleven_char):
     year_full = (current_century if year <= current_year else current_century - 1) * 100 + year
     if month > 12:
         month = month - 50
-    date = (f'{day}.{month}.{year_full}')
+    date = f'{day}.{month}.{year_full}'
     return date
 
 def sex(eleven_char):
@@ -53,21 +49,21 @@ def sex(eleven_char):
 #Osetreni vstupu
 while True:
     pin = input('Zadej rodne cislo ve formatu xxxxxx/xxxx: ') 
-    if pin.replace('/','',1).isdigit():
+    if pin.replace('/', '', 1).isdigit():
         break
     print('Toto neni cislo ve formatu xxxxxx/xxxx!')
 
 
-if format(pin): 
-    print('Kontrola formatu cisla:',format(pin)) 
-else:
-    print('Kontrola formatu cisla:',format(pin)) 
+has_correct_format = format(pin)
+print('Kontrola formatu cisla:', has_correct_format)
+if not has_correct_format:
     exit(1)
-if devide(pin): 
-    print('Delitelnost 11:', devide(pin))
-else:
-    print('Delitelnost 11:', devide(pin))
-    exit(2)
+
+has_correct_divisibility = devide(pin)   
+print('Delitelnost 11:', has_correct_divisibility)
+if not has_correct_divisibility:
+    exit(2) 
+
 print('Datum narozeni:', date_of_birth(pin))
 print('Pohlavi:', sex(pin))
 
