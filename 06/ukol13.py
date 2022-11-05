@@ -30,7 +30,7 @@ def tah(field, position, symbol):
     start = field[:position]
     end = field[position + 1:]
     return start + symbol + end 
-
+letter = input('Zadej pismeno: ')
 def tah_hrace(field):
     '''Vrati herni pole se zaznamenanym tahem hrace.'''
     while True:
@@ -46,7 +46,6 @@ def tah_hrace(field):
            return tah(field, player_position, 'x' )    
         print('Spatne zadana pozice.')
         return tah_hrace(field)
-
 
 def tah_pocitace(field):
     '''Vrati herni pole se zaznamenanym tahem pocitace.'''
@@ -76,10 +75,6 @@ def piskvorky1d():
                 break       
             elif o_game_field:
                 game_field = o_game_field
-    return                 
-
-        
-
 
 piskvorky1d()   
     
