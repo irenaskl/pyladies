@@ -7,9 +7,9 @@ def change(game_field, game_random_word):
 
     while True:      # Overeni vstupu
         letter = input('Zadej pismeno: ').lower()
-        if letter in ascii_lowercase:      # Jestlize neni pismeno v abecede
+        if letter in ascii_lowercase and len(letter) == 1:      # Jestlize neni pismeno v abecede
             break
-        print('Toto neni pismeno!')
+        print('Toto neni jedno pismeno!')
 
     correct_letter = letter in game_random_word      # Pismeno je v hledanem slove
 
