@@ -11,7 +11,7 @@ def format(eleven_char):
             break
         except ValueError:
             print('Toto neni cislo!')
-            eleven_char = input('Zadej rodne cislo ve formatu xxxxxx/xxxx: ')
+            exit()#eleven_char = input('Zadej rodne cislo ve formatu xxxxxx/xxxx: ')
 
     return (len(eleven_char) == 11 and eleven_char[6] == '/' and
             eleven_char.replace('/', '', 1).isdigit())
