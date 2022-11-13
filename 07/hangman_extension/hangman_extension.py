@@ -45,7 +45,6 @@ def result(game_field):
     # Jestlize uz neni volne '-', hra skonci, v opacnem pripade hra pokracuje.
     if '-' not in game_field:
         print(game_field)
-        print('Gratuluji')
-        return 'x'
+        return 'Gratuluji!'
 
     return game_field

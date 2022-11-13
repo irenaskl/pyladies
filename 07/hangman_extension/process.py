@@ -11,7 +11,7 @@ def new_game():
 
 
 def hangman_game():
-    words = ['kolotoc', 'ananas', 'krakatice']
+    words = ['oko', 'anna', 'kolo']
     game_word = random_word(words)  # Vybere nahodne slovo ze seznamu
     game_field = field(game_word)  # Vypocita hraci pole
     mistakes = 0
@@ -19,7 +19,7 @@ def hangman_game():
 
     while True:
         # Jestlize hrac vyhral, pocitac nabidne novou hru
-        if result(game_field) == 'x':
+        if result(game_field) == 'Gratuluji!':
             new_game()
         else:
             # Vyhodnoti, jestli je pismeno v hledanem slove
