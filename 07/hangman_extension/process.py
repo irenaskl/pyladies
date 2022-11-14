@@ -19,7 +19,7 @@ def hangman_game():
 
     while True:
         # Jestlize hrac vyhral, pocitac nabidne novou hru
-        if result(game_field) == 'Gratuluji!':
+        if '-' not in game_field:
             new_game()
         else:
             # Vyhodnoti, jestli je pismeno v hledanem slove
