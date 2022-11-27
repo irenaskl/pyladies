@@ -10,21 +10,18 @@ class Printers:
     def __init__(self, name):
         self.name = name
 
-
     def printing_material(self):
         '''Vyhodnocuje mnozstvi tiskarskeho materialu (naplne)'''
         return self.printing_material > 0
-
 
     def production(self, product):
         '''Vypise, jaky produkt tiskarna tiskne.'''
         print(f'{self.name} is printing {product}...')
 
-
-    def fill_paper(self, paper):
+    def add_paper(self, paper):
         '''Vypise hlasku, ze zasobnik papiru je prazdny.'''
         if paper == self.empty_paper:
-            print(f'{self.name}: Stack is empty. Fill the paper.')
+            print(f'{self.name}: Stack is empty. Add paper.')
 
 
 class InkPrinter(Printers):
@@ -32,7 +29,6 @@ class InkPrinter(Printers):
         # Rozsiruje metodu nadrazene tridy
         self.empty_paper = 0
         super().__init__(name)
-
 
     # Tridy maji stejnou metodu, ktera dela stejnou
     # vec jinym zpusobem:
@@ -48,32 +44,31 @@ class LaserPrinter(Printers):
         self.empty_paper = 0
         super().__init__(name)
 
-
     def fill_printing_material(self, material='toner'):
-            if self.printing_material == False:
-                print(f'{self.name}: Please, change {material}.')
+        if self.printing_material == False:
+            print(f'{self.name}: Please, change {material}.')
 
+
+class Printer3D(Printers):
     # Tridy maji stejnou metodu, ktera dela stejnou
     # vec jinym zpusobem:
-class Printer3D(Printers):
     def fill_printing_material(self, material='string'):
         '''Jestlize je napln pod hodnotou 0, vypise se hlaska'''
         if self.printing_material == False:
             print(f'{self.name}: Shitty job! No {material}!')
 
     # Jedna odvozena trida kompletne prepisuje metodu nadrazene tridy:
-    def fill_paper(self, paper=0):
-        '''3D tiskarna nepouziva papir, proto neni potreba vyhodnocovat stav.'''
+    def add_paper(self, paper=0):
+        '''3D tiskarna nepouziva papir - neni potreba vyhodnocovat stav.'''
         return None
 
 
-
-
 if __name__ == "__main__":
-    printer_list = [InkPrinter('Ink100'), LaserPrinter('Laser100'), Printer3D('3D100')]
+    printer_list = [InkPrinter('Ink100'), LaserPrinter('Laser100'),
+                    Printer3D('3D100')]
 
     for printer in printer_list:
         printer.printing_material = 0
         printer.production('dragon')
         printer.fill_printing_material()
-        printer.fill_paper(0)
+        printer.add_paper(0)
