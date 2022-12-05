@@ -23,13 +23,11 @@ class Invoice:
         with open(filename, 'w') as f:
             f.write(data.text)
 
-
     def download_file(self, url=URL_KURZY_CZ_API, filename=DATA_FILE):
         '''Stazeni url adresy'''
         page = requests.get(url)
         page.raise_for_status()
         self.save_file(page, filename)
-
 
     def actual_data(self):
         '''Kontrola aktualnosti stazene url'''
@@ -38,19 +36,16 @@ class Invoice:
         today = today.strftime('%Y%m%d')
         return self.rates['den'] == today
 
-
     def file_exists(self):
         '''Kontrola existence souboru, do ktereho
            se ulozi data z url'''
         file_exists = os.path.exists(DATA_FILE)
         return file_exists
 
-
     def load_data(self, filename=DATA_FILE):
         '''Ulozeni stazenych dat do promenne'''
         with open(filename) as f:
             self.rates = json.loads(f.read())
-
 
     def count(self, amount, currency):
         '''Vypocet konecne castky'''
@@ -58,7 +53,7 @@ class Invoice:
         try:
             amount = float(amount)
         except ValueError:
-            raise ValueError (f'Wrong amount: {amount}')
+            raise ValueError(f'Wrong amount: {amount}')
 
         if amount < 0:
             raise ValueError(f'Wrong amount: {amount}')
@@ -71,12 +66,10 @@ class Invoice:
         else:
             raise CurrencyError(f'Invalid currency: {currency}')
 
-
     def variable_symbol(self):
         '''Vygenerovani unikatniho variabilniho symbolu'''
         symbol = datetime.now()
         self.symbol = symbol.strftime('%f')
-
 
     def create_invoice(self, text, file=INVOICE):
         '''Vytvoreni faktury v html'''
@@ -101,12 +94,12 @@ class Invoice:
             fp.write(template)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     faktura = Invoice()
-    if faktura.file_exists() == False:
+    if faktura.file_exists() is False:
         faktura.download_file()
     faktura.load_data()
-    if faktura.actual_data() == False:
+    if faktura.actual_data() is False:
         faktura.download_file
     amount = (input('Fill in the amount: '))
     currency = input('Fill in the currency: ').upper()
