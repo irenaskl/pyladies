@@ -1,17 +1,17 @@
 
-list = ['1331', '2332', '1771', '1234', '5678']
+numbers = ['1331', '2332', '1771', '1234', '5678', '131131', '13331', '10301']
 palindrom = []
 palindrom_int = map(int, palindrom)
-prime_numbers = []
 not_prime_number = []
-count = [2, 3, 4, 5, 6, 7, 8, 9]
 
-for i in list:
+for i in numbers:
     if i == i[::-1]:
         palindrom.append(i)
 
+print(palindrom)
 
 for i in palindrom_int:
+    count = list(range(2, i))
     for n in count:
         result = (i % n)
         if result == 0:
