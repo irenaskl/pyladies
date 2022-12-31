@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Faktura číslo INV</title>
+  </head>
+  <body>
+    <h1>Platba za TEXT</h1>
+      <p>Částka: AMOUNTKč</p>
+      <p>Na účet: ACCOUNT</p>
+      <p>VS: SYMBOL</p>
+    <h2>QR platba</h2>
+      <p><img src="QRCODE"></p>
+  </body>
+</html>
