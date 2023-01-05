@@ -1,12 +1,12 @@
 from string import ascii_lowercase, ascii_uppercase
 import re
+import difflib
 
 class Subtitles:
 
     ORIGINAL_SUBTITLES = 'Forrest.Gump.1994.srt'
     THE_MOST_USE_WORDS = '20k.txt'
     EN_CZ_DICTIONARY = 'en-cs.txt'
-
 
     def original_subtitles(self, filename=ORIGINAL_SUBTITLES) -> None:
         '''Converts the subtitles to a list'''
@@ -33,15 +33,14 @@ class Subtitles:
         '''Removes the most use words'''
         with open(file, 'r') as f:
             known_words = (f.read()).split()
-        unknown_words = []
+        self.unknown_words = []
 
         for i in self.original_list:
             if i not in known_words:
-                unknown_words.append(i)
-        self.original_list = unknown_words
+                self.unknown_words.append(i)
 
     def format_dictionary(self, file=EN_CZ_DICTIONARY):
-        '''Convert string dictionary to dict format'''
+        '''Converts string dictionary to dict format'''
         with open(file, 'r') as f:
              dictionary_list = (f.read()).split('\n')
 
@@ -51,8 +50,25 @@ class Subtitles:
             key, *val = i.split('\t')
             self.dictionary_dict[key] = val
 
+    def create_key_list(self):
+        '''Creates key list from dictionary'''
+        self.key_list = []
         for key in self.dictionary_dict:
-            print(key)
+            self.key_list.append(key)
+
+    def find_similar_words(self):
+        '''Creates list of similar words from list of unknown words'''
+        self.similar_words = {}
+        for i in self.unknown_words:
+            self.similar_words[(difflib.get_close_matches(i, self.key_list)[0])] = None
+
+    def translate(self):
+        '''Translates unknown words'''
+        final_translate = {}
+        for i in self.similar_words:
+            if i in self.dictionary_dict:
+                final_translate[i] = self.dictionary_dict[i[0]]
+        print(final_translate)
 
 
 
@@ -63,4 +79,7 @@ if __name__ == '__main__':
     forrest.remove_duplicities()
     forrest.unknown_words()
     forrest.format_dictionary()
+    forrest.create_key_list()
+    forrest.find_similar_words()
+    forrest.translate()
     #print(forrest.original_list)
