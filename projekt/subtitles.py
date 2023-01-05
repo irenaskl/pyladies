@@ -5,7 +5,7 @@ import difflib
 class Subtitles:
 
     ORIGINAL_SUBTITLES = 'Forrest.Gump.1994.srt'
-    THE_MOST_USE_WORDS = '20k.txt'
+    THE_MOST_USE_WORDS = '10k.txt'
     EN_CZ_DICTIONARY = 'en-cs.txt'
 
     def original_subtitles(self, filename=ORIGINAL_SUBTITLES) -> None:
@@ -60,15 +60,22 @@ class Subtitles:
         '''Creates list of similar words from list of unknown words'''
         self.similar_words = {}
         for i in self.unknown_words:
-            self.similar_words[(difflib.get_close_matches(i, self.key_list)[0])] = None
+            print(f'radek 63: {i}')
+        #    self.similar_words[(difflib.get_close_matches(i, self.key_list)[0])] = [i]
+            similar = difflib.get_close_matches(i, self.key_list)[0]
+            self.similar_words[i] = similar
 
     def translate(self):
         '''Translates unknown words'''
         final_translate = {}
-        for i in self.similar_words:
-            if i in self.dictionary_dict:
-                final_translate[i] = self.dictionary_dict[i]
-        print(final_translate)
+        for key in self.similar_words:
+            if key in self.dictionary_dict:
+                #print(key)
+                #print(self.similar_words[key])
+                final_translate[key] = [self.similar_words[key]] + self.dictionary_dict[key]
+
+
+        #print(final_translate)
 
 
 
