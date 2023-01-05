@@ -67,8 +67,9 @@ class Subtitles:
         final_translate = {}
         for i in self.similar_words:
             if i in self.dictionary_dict:
-                final_translate[i] = self.dictionary_dict[i[0]]
+                final_translate[i] = self.dictionary_dict[i]
         print(final_translate)
+
 
 
 
@@ -82,4 +83,4 @@ if __name__ == '__main__':
     forrest.create_key_list()
     forrest.find_similar_words()
     forrest.translate()
-    #print(forrest.original_list)
+    #print(forrest.similar_words)
