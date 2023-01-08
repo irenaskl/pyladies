@@ -5,7 +5,7 @@ import difflib
 class Subtitles:
 
     ORIGINAL_SUBTITLES = 'Forrest.Gump.1994.srt'
-    THE_MOST_USE_WORDS = '10k.txt'
+    THE_MOST_USE_WORDS = '20k.txt'
     EN_CZ_DICTIONARY = 'en-cs.txt'
 
     def original_subtitles(self, filename=ORIGINAL_SUBTITLES) -> None:
@@ -56,27 +56,28 @@ class Subtitles:
         for key in self.dictionary_dict:
             self.key_list.append(key)
 
-    def find_similar_words(self):
+    def find_similar_words(self, file=THE_MOST_USE_WORDS):
         '''Creates list of similar words from list of unknown words'''
         self.similar_words = {}
         for i in self.unknown_words:
-            print(f'radek 63: {i}')
-        #    self.similar_words[(difflib.get_close_matches(i, self.key_list)[0])] = [i]
             similar = difflib.get_close_matches(i, self.key_list)[0]
             self.similar_words[i] = similar
 
+        with open(file, 'r') as f:
+            known_words = (f.read()).split()
+        self.final_unknown_words = {}
+
+        for key, value in self.similar_words.items():
+            if value not in known_words:
+                self.final_unknown_words[key] = value
+
     def translate(self):
-        '''Translates unknown words'''
+        '''Translates final unknown words'''
         final_translate = {}
-        for key in self.similar_words:
-            if key in self.dictionary_dict:
-                #print(key)
-                #print(self.similar_words[key])
-                final_translate[key] = [self.similar_words[key]] + self.dictionary_dict[key]
-
-
-        #print(final_translate)
-
+        for key, value in self.final_unknown_words.items():
+            if value in self.dictionary_dict:
+                final_translate[key] = [self.final_unknown_words[key]] + self.dictionary_dict[value]
+        print(final_translate)
 
 
 
@@ -90,4 +91,3 @@ if __name__ == '__main__':
     forrest.create_key_list()
     forrest.find_similar_words()
     forrest.translate()
-    #print(forrest.similar_words)
