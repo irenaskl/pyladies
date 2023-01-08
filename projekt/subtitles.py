@@ -4,7 +4,7 @@ import difflib
 
 class Subtitles:
 
-    ORIGINAL_SUBTITLES = 'Forrest.Gump.1994.srt'
+    ORIGINAL_SUBTITLES = 'The Lord of the Rings. The Fellowship of the Ring.srt'
     THE_MOST_USE_WORDS = '20k.txt'
     EN_CZ_DICTIONARY = 'en-cs.txt'
 
@@ -60,8 +60,12 @@ class Subtitles:
         '''Creates list of similar words from list of unknown words'''
         self.similar_words = {}
         for i in self.unknown_words:
-            similar = difflib.get_close_matches(i, self.key_list)[0]
-            self.similar_words[i] = similar
+            try:
+                similar = difflib.get_close_matches(i, self.key_list)[0]
+                self.similar_words[i] = similar
+            except IndexError as e:
+                print(e)
+                pass
 
         with open(file, 'r') as f:
             known_words = (f.read()).split()
